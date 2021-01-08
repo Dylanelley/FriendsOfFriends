@@ -29,6 +29,18 @@ class Person:
                         return True
             return False
 
+    def find_path_to(self, target, path=[]):
+        path.append(self)
+        if target in self.get_friends():
+            path.append(target)
+            return path
+        for friend in self.get_friends():
+            if friend not in path:
+                new_path = friend.find_path_to(target, path)
+                if new_path:
+                    return path
+        return []
+
     def __str__(self):
         return self.name
 

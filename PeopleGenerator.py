@@ -4,7 +4,7 @@ from Person import Person
 
 # generates grapth where nodes are people and edges are friends
 def generate_people_with_friends(number_of_people, max_friends, total_connections):
-
+    # checking that there are not too many connections
     max_connections = (number_of_people * (number_of_people - 1)) // 2
     if total_connections > max_connections:
         total_connections = max_connections
@@ -39,7 +39,7 @@ def generate_people_with_friends(number_of_people, max_friends, total_connection
     while people:
         connected_people.append(people.pop())
 
-    return connected_people
+    return sorted(connected_people, key=lambda x: x.get_name())
 
 
 def visualise_people(people):
