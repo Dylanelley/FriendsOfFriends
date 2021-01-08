@@ -11,11 +11,23 @@ class Person:
     def get_name(self):
         return self.name
 
-    def get_friend_cont(self):
+    def get_friend_count(self):
         return self.number_of_friends
 
     def get_friends(self):
         return self.friends
+
+    def is_connected(self, target, visited=[]):
+
+        if target in self.get_friends():
+            return True
+        else:
+            visited.append(self)
+            for friend in self.get_friends():
+                if friend not in visited:
+                    if friend.is_connected(target, visited):
+                        return True
+            return False
 
     def __str__(self):
         return self.name
